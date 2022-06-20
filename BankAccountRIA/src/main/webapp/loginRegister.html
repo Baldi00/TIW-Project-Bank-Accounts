@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link rel="stylesheet" type="text/css" th:href="@{style.css}"
+	href="style.css">
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/ajaxCall.js" charset="utf-8"
+	defer></script>
+<script type="text/javascript" src="js/loginCheck.js" charset="utf-8"
+	defer></script>
+<script type="text/javascript" src="js/registerCheck.js" charset="utf-8"
+	defer></script>
+</head>
+<body>
+	<h1 class="text-center">HOME BANKING</h1>
+	<h3 class="text-center">LOGIN</h3>
+	<form action="#" id="loginForm"
+		class="form-group container custom-opaque-container-rounded w-50">
+		<table class="table-center">
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="email" class="form-control"
+					required></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="password" class="form-control"
+					required></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="button"
+					class="btn btn-danger w-100" id="loginButton" value="Login"></td>
+			</tr>
+			<tr id="loginErrorMessage" class="text-red text-center" hidden="true">
+			</tr>
+		</table>
+	</form>
+
+	<h3 class="text-center">REGISTRAZIONE</h3>
+	<form action="#"
+		class="form-group container custom-opaque-container-rounded w-50">
+		<table class="table-center">
+			<tr>
+				<td>Nome:</td>
+				<td><input type="text" name="name" id="registerName"
+					class="form-control" required /></td>
+			</tr>
+			<tr>
+				<td>Cognome:</td>
+				<td><input type="text" name="surname" id="registerSurname"
+					class="form-control" required /></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="email" id="registerEmail"
+					class="form-control" required /></td>
+			</tr>
+			<tr hidden="true" id="emailError">
+				<td></td>
+				<td class="text-red">Indirizzo email non valido</td>
+			</tr>
+			<tr>
+				<td>Password (min 8 caratteri):</td>
+				<td><input type="password" name="password" class="form-control"
+					id="registerPassword" required /></td>
+			</tr>
+			<tr hidden="true" id="passwordTooShortError">
+				<td></td>
+				<td class="text-red">Password troppo corta</td>
+			</tr>
+			<tr>
+				<td>Ripeti Password:</td>
+				<td><input type="password" name="repeatedPassword"
+					class="form-control" id="registerRepeatedPassword" required /></td>
+			</tr>
+			<tr hidden="true" id="passwordMismatchError">
+				<td></td>
+				<td class="text-red">Le due password non corrispondono</td>
+			</tr>
+			<tr hidden="true" id="missingParametersError">
+				<td></td>
+				<td class="text-red">Qualche campo non è stato compilato</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="button"
+					class="btn btn-danger w-100" id="registerButton" value="Registrati"></td>
+			</tr>
+			<tr id="successfulRegisterMessage" class="text-green text-center" hidden="true">
+				<td colspan="2">Registrato correttamente, ora effettua il login
+				</td>
+			</tr>
+			<tr id="registerErrorMessage" class="text-red text-center" hidden="true">
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="js/home.js" charset="utf-8" defer></script>
+<script type="text/javascript" src="js/ajaxCall.js" charset="utf-8"
+	defer></script>
+</head>
+<body class="bg-lighter text-center">
+	<h3 id="errorMessage" class="text-red" hidden="true"></h3>
+	<div id="transferSuccessFragment" hidden="true"></div>
+	<table class="w-100">
+		<tr>
+			<td id="accountsListFragment" hidden="false" class="align-top">
+				<h1 id="username"></h1>
+				<h2>I TUOI CONTI</h2>
+				<div id="accountsList"></div>
+				<a id="logoutButton" class="btn btn-danger" href="#">Logout</a>
+			</td>
+			<td id="accountTransferFragment" hidden="true" class="align-top">
+				<h2>TRASFERISCI DENARO</h2>
+				<form class="form-group container">
+					<table class="table-center custom-opaque-container-rounded">
+						<tr>
+							<td>Suggerimenti da rubrica:</td>
+							<td><select class="form-select" id="notebookAccounts"></select></td>
+						</tr>
+						<tr>
+							<td>Email destinatario:</td>
+							<td><input type="text" id="receiverEmail"
+								class="form-control" name="receiver_email" required /></td>
+						</tr>
+						<tr>
+							<td>Codice conto destinatario:</td>
+							<td><input type="number" id="receiverAccountId"
+								class="form-control" name="receiver_account_id" value="1"
+								min="1" required /></td>
+						</tr>
+						<tr>
+							<td>Importo:</td>
+							<td><input type="number" name="amount" class="form-control"
+								id="transferMoneyAmount" value="1" min="1" step=".01" required /></td>
+						</tr>
+						<tr hidden="true" id="amountError">
+							<td></td>
+							<td class="text-red">Inserisci un importo maggiore o uguale
+								a 1</td>
+						</tr>
+						<tr>
+							<td>Causale:</td>
+							<td><input type="text" name="reason" id="reason"
+								class="form-control" required /></td>
+						</tr>
+						<tr hidden="true" id="missingParametersError">
+							<td></td>
+							<td class="text-red">Qualche campo non è stato compilato</td>
+						</tr>
+						<tr>
+							<td colspan="2"><input id="transferMoneyButton"
+								type="button" class="btn btn-danger w-100"
+								value="Trasferisci denaro"></td>
+						</tr>
+					</table>
+					<input id="transferMoneySenderAccountId" type="hidden"
+						name="sender_account_id">
+				</form>
+			</td>
+			<td id="accountDetailsFragment" hidden="true" class="align-top">
+				<h2>DETTAGLI CONTO</h2> <span id="accountDetails"></span>
+				<h2 class="mt-5">I MOVIMENTI SU QUESTO CONTO</h2>
+				<h5>Effettuati</h5>
+				<div id="accountDetailsSentMovements"></div>
+				<h5>Ricevuti</h5>
+				<div id="accountDetailsReceivedMovements"></div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

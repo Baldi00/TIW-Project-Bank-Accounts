@@ -1,0 +1,39 @@
+@charset "ISO-8859-1";
+
+.text-red{
+	color: red;
+}
+
+.text-green{
+	color: green;
+}
+
+body{
+    background: url('img/bg.jpg');
+}
+
+body.bg-lighter{
+	background: url('img/bg-lighter.jpg');
+}
+
+.custom-opaque-container-rounded{
+    background: rgba(255,255,255,0.75);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+table.table-center{
+	margin: 0 auto;
+}
+
+table.table-black-border{
+	border-color: black;
+}
+
+.white-opaque-backgroud{
+    background: rgba(255,255,255,0.75);
+}
+
+td.align-top {
+	vertical-align: top;
+}
