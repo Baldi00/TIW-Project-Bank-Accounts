@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="style.css" type="text/css" rel="stylesheet">
+<title>Trasferimento Riuscito</title>
+<link rel="stylesheet" type="text/css" th:href="@{style.css}" href="style.css">
+</head>
+<body class="bg-lighter text-center">
+	<h1 class="text-green">TRASFERIMENTO RIUSCITO</h1>
+	<h3>Dettagli trasferimento</h3>
+	<table class="table table-bordered w-75 table-center table-black-border white-opaque-backgroud"><tbody>
+	<tr><th>Importo:</th><td th:text="${movement.amount + ' euro'}"></td></tr>
+	<tr><th>Causale:</th><td th:text="${movement.reason}"></td></tr>
+	</tbody></table>
+	<h3>Conto origine</h3>
+	<table class="table table-bordered w-75 table-center table-black-border white-opaque-backgroud"><tbody>
+	<tr><th>Codice:</th><td th:text="${senderAccount.id}"></td></tr>
+	<tr><th>Proprietario:</th><td th:text="${movement.senderName}"></td></tr>
+	<tr><th>Saldo prima del trasferimento:</th><td th:text="${senderAccount.balance + movement.amount + ' euro'}"></td></tr>
+	<tr><th>Saldo dopo il trasferimento:</th><td th:text="${senderAccount.balance + ' euro'}"></td></tr>
+	</tbody></table>
+	<h3>Conto destinazione</h3>
+	<table class="table table-bordered w-75 table-center table-black-border white-opaque-backgroud"><tbody>
+	<tr><th>Codice:</th><td th:text="${receiverAccount.id}"></td></tr>
+	<tr><th>Proprietario:</th><td th:text="${movement.receiverName}"></td></tr>
+	<tr><th>Saldo prima del trasferimento:</th><td th:text="${receiverAccount.balance - movement.amount + ' euro'}"></td></tr>
+	<tr><th>Saldo dopo il trasferimento:</th><td th:text="${receiverAccount.balance + ' euro'}"></td></tr>
+	</tbody></table>
+	<a th:href="@{/AccountDetailsPage(accountId=${senderAccount.id})}" class="btn btn-danger mb-3 mt-3">Pagina precedente</a>
+	<a th:href="@{/Logout}" class="btn btn-danger mb-3 mt-3">Logout</a>
+</body>
+</html>

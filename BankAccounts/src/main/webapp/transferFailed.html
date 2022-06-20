@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="style.css" type="text/css" rel="stylesheet">
+<title>Trasferimento Fallito</title>
+<link rel="stylesheet" type="text/css" th:href="@{style.css}"
+	href="style.css">
+</head>
+<body class="bg-lighter text-center">
+	<h1 class="text-red">TRASFERIMENTO FALLITO</h1>
+	<h3 th:if="${failReason == 'accountDoesNotExist'}">Motivo: Il
+		conto da cui prelevare non esiste</h3>
+	<h3 th:if="${failReason == 'notEnoughMoney'}">Motivo: Il conto da
+		cui prelevare non ha un saldo sufficiente per compiere il
+		trasferimento</h3>
+	<h3 th:if="${failReason == 'wrongAccountOrEmail'}">Motivo: Il
+		codice conto e l'email del destinatario non coincidono</h3>
+	<h3 th:if="${failReason == 'sameBankAccount'}">Motivo: Tentativo di
+		trasferimento di denaro sullo stesso conto corrente</h3>
+	<h3 th:if="${failReason == 'genericError'}">Motivo: Errore
+		generico</h3>
+	<a th:href="@{/AccountDetailsPage(accountId=${account})}" class="btn btn-danger">Pagina
+		precedente</a>
+	<a th:href="@{/Logout}" class="btn btn-danger">Logout</a>
+</body>
+</html>

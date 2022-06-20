@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link rel="stylesheet" type="text/css" th:href="@{style.css}"
+	href="style.css">
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<h1 class="text-center">HOME BANKING</h1>
+	<h3 class="text-center">LOGIN</h3>
+	<form th:action="@{/Login}" method="POST"
+		class="form-group container custom-opaque-container-rounded w-50">
+		<table class="table-center">
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="email" class="form-control"
+					required /></td>
+			</tr>
+			<tr>
+				<td>Password:</td>
+				<td><input type="password" name="password" class="form-control"
+					required /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit"
+					class="btn btn-danger w-100" value="Login"></td>
+			</tr>
+			<tr th:if="${login == 'failed'}">
+				<td colspan="2" class="text-red text-center">
+					Username o password non corretti
+				</td>
+			</tr>
+		</table>
+	</form>
+
+	<h3 class="text-center">REGISTRAZIONE</h3>
+	<form th:action="@{/Register}" method="POST"
+		class="form-group container custom-opaque-container-rounded w-50">
+		<table class="table-center">
+			<tr>
+				<td>Nome:</td>
+				<td><input type="text" name="name" class="form-control"
+					required /></td>
+			</tr>
+			<tr>
+				<td>Cognome:</td>
+				<td><input type="text" name="surname" class="form-control"
+					required /></td>
+			</tr>
+			<tr>
+				<td>Email:</td>
+				<td><input type="text" name="email" class="form-control"
+					required /></td>
+			</tr>
+			<tr>
+				<td>Password (min 8 caratteri):</td>
+				<td><input type="password" name="password" class="form-control"
+					required /></td>
+			</tr>
+			<tr>
+				<td>Ripeti Password:</td>
+				<td><input type="password" name="repeatedPassword"
+					class="form-control" required /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit"
+					class="btn btn-danger w-100" value="Registrati"></td>
+			</tr>
+			<tr th:if="${register == 'success'}">
+				<td colspan="2" class="text-green text-center">
+					Registrato correttamente, ora effettua il login
+				</td>
+			</tr>
+			<tr th:if="${register == 'emailAlreadyPresent'}">
+				<td colspan="2" class="text-red text-center">
+					Email già presente, scegliene un'altra
+				</td>
+			</tr>
+			<tr th:if="${register == 'passwordTooShort'}">
+				<td colspan="2" class="text-red text-center">
+					La password è troppo corta
+				</td>
+			</tr>
+			<tr th:if="${register == 'passwordDifferent'}">
+				<td colspan="2" class="text-red text-center">
+					Le due password sono diverse
+				</td>
+			</tr>
+			<tr th:if="${register == 'invalidEmail'}">
+				<td colspan="2" class="text-red text-center">
+					Indirizzo email non valido
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

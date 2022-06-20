@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="style.css" type="text/css" rel="stylesheet">
+<title>Conto</title>
+</head>
+<body class="bg-lighter text-center">
+	<h1>DETTAGLI CONTO</h1>
+	<span
+		th:text="${'Codice: '+bankAccount.id+', Saldo: '+bankAccount.balance+' euro'}">
+		Codice: 123, Saldo: 123 euro </span>
+
+	<h1 class="mt-5">TRASFERISCI DENARO</h1>
+	<form th:action="@{/TransferMoney}" class="form-group container"
+		method="POST">
+		<table class="table-center custom-opaque-container-rounded">
+			<tr>
+				<td>Email destinatario:</td>
+				<td><input type="text" class="form-control"
+					name="receiver_email" required /></td>
+			</tr>
+			<tr>
+				<td>Codice conto destinatario:</td>
+				<td><input type="number" class="form-control"
+					name="receiver_account_id" value="1" min="1" required /></td>
+			</tr>
+			<tr>
+				<td>Importo:</td>
+				<td><input type="number" class="form-control" name="amount"
+					value="1" min="1" step=".01" required /></td>
+			</tr>
+			<tr>
+				<td>Causale:</td>
+				<td><input type="text" class="form-control" name="reason"
+					required /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit"
+					class="btn btn-danger w-100" value="Trasferisci denaro"></td>
+			</tr>
+		</table>
+		<input type="hidden" name="sender_account_id"
+			th:value="${bankAccount.id}">
+	</form>
+
+	<h1 th:if="${!sentMovements.empty or !receivedMovements.empty}"
+		class="mt-5">I MOVIMENTI SU QUESTO CONTO</h1>
+	<div th:if="${!sentMovements.empty}">
+		<h3>Effettuati</h3>
+		<table class="table table-bordered w-75 table-center table-black-border white-opaque-backgroud">
+			<tr>
+				<th>Data</th>
+				<th>Importo</th>
+				<th>Causale</th>
+				<th>Conto destinazione</th>
+			</tr>
+			<tr th:each="movement : ${sentMovements}"
+				th:if="${movement.senderAccount == bankAccount.id}">
+				<td th:text="${movement.date}">1/1/1970</td>
+				<td th:text="${movement.amount + ' euro'}">123 euro</td>
+				<td th:text="${movement.reason}">abc</td>
+				<td
+					th:text="${movement.receiverAccount+' di '+movement.receiverName}">123
+					di ABC ABC</td>
+			</tr>
+		</table>
+	</div>
+	<div th:if="${!receivedMovements.empty}">
+		<h3>Ricevuti</h3>
+		<table class="table table-bordered w-75 table-center table-black-border white-opaque-backgroud">
+			<tr>
+				<th>Data</th>
+				<th>Importo</th>
+				<th>Causale</th>
+				<th>Conto mittente</th>
+			</tr>
+			<tr th:each="movement : ${receivedMovements}"
+				th:if="${movement.receiverAccount == bankAccount.id}">
+				<td th:text="${movement.date}">1/1/1970</td>
+				<td th:text="${movement.amount + ' euro'}">123 euro</td>
+				<td th:text="${movement.reason}">abc</td>
+				<td
+					th:text="${movement.senderAccount+' di '+movement.senderName}">123
+					di ABC ABC</td>
+			</tr>
+		</table>
+	</div>
+	<div class="mb-3"></div>
+	<a th:href="@{/HomePage}" class="btn btn-danger">Pagina precedente</a>
+	<a th:href="@{/Logout}" class="btn btn-danger">Logout</a>
+	<div class="mb-3"></div>
+</body>
+</html>
