@@ -99,7 +99,7 @@
 					this.missingParametersError.hidden = true;
 				}
 
-				if (this.transferMoneyAmount.value < 1) {
+				if (isNaN(this.transferMoneyAmount.value) || this.transferMoneyAmount.value < 1) {
 					this.amountError.hidden = false;
 					return;
 				} else {

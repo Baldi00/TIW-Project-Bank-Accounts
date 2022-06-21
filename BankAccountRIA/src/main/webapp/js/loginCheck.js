@@ -9,8 +9,8 @@
 						var message = x.responseText;
 						switch (x.status) {
 							case 200:
-								window.location.href = "home.html";
 								sessionStorage.setItem('username', message);
+								window.location.href = "home.html";
 								break;
 							case 500:
 								let errorMessage = document.getElementById("loginErrorMessage");
